@@ -384,6 +384,16 @@ int zmq_recv (void *s_, zmq_msg_t *msg_, int flags_)
     return (((zmq::socket_base_t*) s_)->recv (msg_, flags_));
 }
 
+int zmq_destroy_identity(void *s_, const unsigned char *identity)
+{
+    if (!s_ || !((zmq::socket_base_t*) s_)->check_tag ()) {
+        errno = ENOTSOCK;
+        return -1;
+    }
+    (((zmq::socket_base_t*) s_)->destroy_identity ( zmq::blob_t(identity)));
+    return 0;
+}
+
 #if defined ZMQ_FORCE_SELECT
 #define ZMQ_POLL_BASED_ON_SELECT
 #elif defined ZMQ_FORCE_POLL

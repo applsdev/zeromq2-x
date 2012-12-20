@@ -51,6 +51,8 @@ namespace zmq
         bool xhas_in ();
         bool xhas_out ();
 
+        void destroy_identity (const blob_t &identity);
+
     private:
 
         //  Hook into the termination process.

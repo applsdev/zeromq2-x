@@ -345,3 +345,9 @@ void zmq::session_t::terminate ()
     force_terminate = true;
     own_t::terminate ();
 }
+
+void zmq::session_t::destroy ()
+{
+    process_seqnum();
+    terminate();
+}

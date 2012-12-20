@@ -23,6 +23,7 @@
 #include "xrep.hpp"
 #include "err.hpp"
 #include "pipe.hpp"
+#include "session.hpp"
 
 zmq::xrep_t::xrep_t (class ctx_t *parent_, uint32_t tid_) :
     socket_base_t (parent_, tid_),
@@ -329,4 +330,10 @@ bool zmq::xrep_t::xhas_out ()
     return true;
 }
 
-
+void zmq::xrep_t::destroy_identity (const blob_t &identity)
+{
+    class session_t *sess = find_session(identity);
+    if (sess) {
+        sess->destroy();
+    }
+}

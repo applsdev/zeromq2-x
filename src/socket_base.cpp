@@ -875,3 +875,8 @@ void zmq::socket_base_t::check_destroy ()
         own_t::process_destroy ();
     }
 }
+
+void zmq::socket_base_t::destroy_identity (const blob_t &identity)
+{
+    zmq_assert (false);
+}

@@ -228,6 +228,7 @@ ZMQ_EXPORT int zmq_bind (void *s, const char *addr);
 ZMQ_EXPORT int zmq_connect (void *s, const char *addr);
 ZMQ_EXPORT int zmq_send (void *s, zmq_msg_t *msg, int flags);
 ZMQ_EXPORT int zmq_recv (void *s, zmq_msg_t *msg, int flags);
+ZMQ_EXPORT int zmq_destroy_identity (void *s, const unsigned char *identity);
 
 /******************************************************************************/
 /*  I/O multiplexing.                                                         */

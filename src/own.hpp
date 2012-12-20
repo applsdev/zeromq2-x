@@ -94,6 +94,8 @@ namespace zmq
         //  Socket options associated with this object.
         options_t options;
 
+        void process_seqnum ();
+
     private:
 
         //  Set owner of the object
@@ -103,7 +105,7 @@ namespace zmq
         void process_own (own_t *object_);
         void process_term_req (own_t *object_);
         void process_term_ack ();
-        void process_seqnum ();
+
 
         //  Check whether all the peding term acks were delivered.
         //  If so, deallocate this object.

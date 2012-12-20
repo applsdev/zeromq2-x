@@ -105,6 +105,10 @@ namespace zmq
         //  handlers explicitly. If required, it will deallocate the socket.
         void check_destroy ();
 
+        // Called to tell an xrep / xreq socket to clean up after an identity
+        // that has been determined to have perminently disappeared
+        virtual void destroy_identity (const blob_t &identity);
+
     protected:
 
         socket_base_t (class ctx_t *parent_, uint32_t tid_);
