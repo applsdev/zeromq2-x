@@ -71,6 +71,10 @@ void zmq::io_object_t::reset_pollin (handle_t handle_)
     poller->reset_pollin (handle_);
 }
 
+void zmq::io_object_t::peer_closed (handle_t handle_) {
+    poller->peer_closed (handle_);
+}
+
 void zmq::io_object_t::set_pollout (handle_t handle_)
 {
     poller->set_pollout (handle_);

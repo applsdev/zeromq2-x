@@ -78,6 +78,12 @@ void zmq::epoll_t::rm_fd (handle_t handle_)
 {
     poll_entry_t *pe = (poll_entry_t*) handle_;
     int rc = epoll_ctl (epoll_fd, EPOLL_CTL_DEL, pe->fd, &pe->ev);
+
+    // Already removed fd during shutdown?
+    if (rc == -1 && errno == ENOENT)
+        return;
+
+    // No other valid reason for error
     errno_assert (rc != -1);
     pe->fd = retired_fd;
     retired.push_back (pe);
@@ -100,6 +106,10 @@ void zmq::epoll_t::reset_pollin (handle_t handle_)
     pe->ev.events &= ~((short) EPOLLIN);
     int rc = epoll_ctl (epoll_fd, EPOLL_CTL_MOD, pe->fd, &pe->ev);
     errno_assert (rc != -1);
+}
+
+void zmq::epoll_t::peer_closed (handle_t handle_) {
+    rm_fd(handle_);
 }
 
 void zmq::epoll_t::set_pollout (handle_t handle_)

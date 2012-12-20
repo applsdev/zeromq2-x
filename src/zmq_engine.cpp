@@ -161,7 +161,7 @@ void zmq::zmq_engine_t::in_event ()
     if (inout && disconnection) {
         input_error = true;
         if (decoder.stalled ())
-            reset_pollin (handle);
+            peer_closed (handle);
         else
             error ();
     }

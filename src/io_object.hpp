@@ -59,6 +59,7 @@ namespace zmq
         void reset_pollout (handle_t handle_);
         void add_timer (int timout_, int id_);
         void cancel_timer (int id_);
+        void peer_closed (handle_t handle_);
 
         //  i_poll_events interface implementation.
         void in_event ();
